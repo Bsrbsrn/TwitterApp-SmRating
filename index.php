@@ -144,6 +144,22 @@ if (!$_SESSION['access_token']) {
 								//echo $home_tmln[$i]->text;
 								//echo '<br>';
 							//}
+							
+							
+							$connection = new TwitterOAuth(TWITTER_CONSUMER_KEY, TWITTER_CONSUMER_SECRET_KEY, $request_token['oauth_token'], $request_token['oauth_token_secret']);
+							
+							//POST gönderme
+							$url = "https://api.twitter.com/1.1/statuses/update.json";
+							$requestMethod = 'POST';
+							$postfields = array(
+								'status' => 'hadi olcak inşallah :)');
+								$twitter = new TwitterAPIExchange($connection);
+								echo $twitter->buildOauth($url, $requestMethod)
+												->setPostfields($postfields)
+												->performRequest();
+
+												
+							
 
 							unset($_SESSION['oauth_token']);
 							unset($_SESSION['oauth_token_secret']);
